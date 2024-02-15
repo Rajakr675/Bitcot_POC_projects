@@ -1,0 +1,325 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Node Base Project--CRUD API with Bookshelf and Knex",
+    "description": "This is a sample server Node Base Project server.  You can find out more about Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).  For this sample, you can use the api key `special-key` to test the authorization filters. : API documentation for managing users and tasks",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "dev@bitcot.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Project",
+    "url": "#"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3022/v1"
+    },
+    {
+      "url": "https://basenode-api.bitcotapps.com/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "Operations about User."
+    },
+    {
+      "name": "task",
+      "description": "Operations about task."
+    }
+  ],
+  "paths": {
+    "/user/create": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create a new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/createUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully"
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    },
+    "/user/read/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get a user by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User retrieved successfully"
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    },
+    "/user/update/{id}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update a user by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  
+                  "name": {
+                    "type": "string",
+                    "example": "raja"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User updated successfully"
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    },
+    "/user/delete/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete a user by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User deleted successfully"
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    },
+    
+    "/config/create": {
+      "post": {
+        "tags": [
+          "task"
+        ],
+        "summary": "create a task and assign to user",
+        "operationId": "taskCreate",
+        "requestBody": {
+          "description": "request body",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#components/schemas/createTask"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation",
+            "content": {}
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    },
+    "/config/read/{id}": {
+      "get": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Get a task by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Task retrieved successfully"
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    },
+    "/config/update/{id}": {
+      "put": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Update a task by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User updated successfully"
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    },
+    "/config/delete/{id}": {
+      "delete": {
+        "tags": [
+          "task"
+        ],
+        "summary": "Delete a task by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "task deleted successfully"
+          }
+        },
+        "x-code-request-body-name": "body"
+      }
+    }
+
+  },
+  "components": {
+    "schemas": {
+      "createTask": {
+        "type": "object",
+        "properties": {
+          "task_name": {
+            "type": "string"
+          },
+          "description":{
+            "type":"string"
+          },
+          "status":{
+            "type":"string"
+          },
+          "user_id":{
+            "type":"integer"
+          }
+        }
+      },
+      "createUser": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "raja"
+          },
+          "email": {
+            "type": "string",
+            "example": "raja@bitcot.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "authorization": {
+        "type": "apiKey",
+        "description": "<b>How to set Token into Value => Bearer {{Token get from login}} </b>",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  }
+}

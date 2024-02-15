@@ -1,0 +1,16 @@
+
+
+1 ). Materialized view.?
+
+    Materialized view is a database object that stores pre-calculated results, which improves query performance.
+    This is a view that is defined over base table(s), but its data is stored in physical storage.
+    This allows us to directly access frequently accessed data without executing queries, which reduces response time.
+
+2 ).Why Materialized view.?
+
+    a).Materialized views improve query performance because pre-calculated results are stored,
+    saving time by directly accessing frequently accessed data.
+
+    b).Materialized views help us handle complex queries, especially when we have to retrieve data from multiple tables.
+    or perform calculations.
+

@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model user {
+  id Int @id @default(autoincrement())
+  firstName String 
+  lastName String
+  email String @unique
+  age Int
+  Nationality String 
+  city City @default(indore)
+  Account UserInfo[]
+  
+  
+  
+
+
+}
+
+model UserInfo{
+  id Int @id @default(autoincrement())
+  title  String
+  bank_name  String
+  Account_open Boolean
+  Active_acc  Boolean @default(false)
+  Account_id  Int
+  Accounttt user @relation(fields: [Account_id] , references:[id] , onDelete: Cascade) 
+  
+
+}
+enum City {
+  indore
+  bhopal
+  ujjain
+  dewas
+}
